@@ -1,0 +1,53 @@
+<div ng-controller = "ForumController as forumctrl">
+	<div class="well row bordered">
+		<div class="col-sm-12">
+			<div>
+				<div class="h3">{{forum1.forumName}}</div>
+
+				<div class="col-xs-6">
+					<div class="text-muted">{{forum1.userId}}</div>
+				</div>
+				<div class="col-xs-6">
+					<div class="text-right text-muted">{{forum1.createDate | date:"medium" }}</div>
+				</div>
+			</div>
+			<hr />
+			<hr />
+			<div class="text-justify">{{forum1.forumContent}}</div>
+
+		</div>
+	</div>
+	
+	<hr />
+	<div class="h3">Add Comment</div>
+	<br /><br />
+	<div class="container">
+		<form name="myForm" ng-submit="forumctrl.saveForumComment(forumComment, forum1.forumId)">
+			<div class="form-group">
+				<label for="fComment">Comment:</label>
+				<textarea type="text" placeholder="Enter Comment" class="form-control" name="fComment" id="fComment" ng-model="forumComment.forumComment" ng-minlength="5" ng-maxlength="5000" required></textarea>
+				<span ng-show="myForm.fComment.$error.minlength" style="color: red;">Minimum 5 characters</span> 
+				<span ng-show="myForm.fComment.$error.maxlength" style="color: red;">Maximum 5000 characters</span> 
+				<span ng-show="myForm.fComment.$error.required && myForm.fComment.$dirty" style="color: red;">Required Field</span>
+			</div>
+			<button type="submit" class="btn btn-success" ng-disabled="myForm.$invalid">Add Comment</button>
+		</form>
+	</div>
+	
+	<hr />
+	<div class="h3">Forum Comments</div>
+	<br /><br />
+	
+	<table class="table table-striped">
+		<tr ng-repeat="forumComment in forumComments | filter: {forumId:forum1.forumId}">
+			<td class="col-sm-4">
+			{{forumComment.username}} 
+			<br />
+			<div class="text-muted">{{forumComment.commentDate | date : "medium"}}</div>
+			
+			</td  class="col-sm-8">
+			<td>{{forumComment.forumComment}}</td>
+		</tr>
+	</table>
+	
+</div>

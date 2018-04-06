@@ -1,0 +1,70 @@
+<html>
+<head>
+<style type="text/css">
+body
+{
+
+background: url("resources/images/3.jpg");
+background-repeat:no-repeat;
+background-size:cover;
+
+}
+
+</style>
+</head>
+<body>
+<div>
+	<p>
+	<p>
+	<p>
+	<p>
+	<p>
+	<div ng-controller="ChatController" class="container">
+
+		<p>
+		<p>
+		<p>
+		<p>
+		<p>
+		<form ng-submit="addMessage()" name="messageForm">
+			<div class="form-group">
+			  <label for="comment">Chat Message:</label>
+			  <textarea class="form-control" rows="5" id="comment" placeholder="Compose a new message..." ng-model="message"></textarea>
+			</div>
+
+			<div class="info">
+				<span class="count" ng-bind="max - message.length" ng-class="{danger: message.length > max}">50</span>
+				<button ng-disabled="message.length > max || message.length === 0">Send</button>
+			</div>
+
+		</form>
+	</div>
+
+
+	<br />
+	<br />
+	<br />
+
+	<div class="message-wrap col-sm-12">
+		<div class="msg-wrap">
+
+			<div ng-repeat="message in messages | orderBy:'time':true">
+				<div class="media msg ">
+					<div class="col-xs-1">
+						<div class="frame">
+							<img class="img-responsive media-object" width="50px" check-image ng-src="{{'resources/ProfilePics/'+message.userID}}" />
+						</div>
+					</div>
+					<div class="col-xs-offset-1 col-xs-10">
+						<div class=" text-right media-body">
+							<small class="time"><i class="fa fa-clock-o"></i> {{message.time | date:'HH.mm'}}</small>
+						</div>
+						<h5 class="media-heading">{{message.userID}}</h5>
+						{{message.message}}
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		</body>
+		</html>

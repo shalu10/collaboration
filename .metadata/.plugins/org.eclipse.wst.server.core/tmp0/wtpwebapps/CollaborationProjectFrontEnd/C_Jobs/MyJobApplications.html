@@ -1,0 +1,17 @@
+<div ng-controller="JobController as jobctrl">
+	<div ng-include="'C_Navbar/CommonNavBar.html'"></div>
+	<div class="h2">My Job Applications</div>
+	
+	<table class="table table-striped">
+		<tr>
+			<th>Job Id</th>
+			<th>Date Applied</th>
+			<th>Remarks</th>
+		</tr>
+		<tr ng-repeat="thisjob in MyAppliedJobs">
+			<th>{{thisjob.jobId}}</th>
+			<th>{{thisjob.dateApplied | date:'medium'}}</th>
+			<th>{{thisjob.remarks}}</th>
+		</tr>
+	</table>
+</div>

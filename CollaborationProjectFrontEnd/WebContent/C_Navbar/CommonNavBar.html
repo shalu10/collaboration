@@ -1,0 +1,16 @@
+<div ng-controller="navController">
+	<div ng-controller="UserController as userctrl">
+		<div ng-controller = "FriendController as friendctrl">
+			<div class="container">
+				<div class="navbar navbar-default">
+					<ul class="nav navbar-nav nav-tabs nav-justified">
+					<li ng-class="{active: isActive('/MyProfile')}"><a href="#/MyProfile">Manage My Profile</a></li>
+					<li ng-class="{active: isActive('/getMyFriends')}"><a href="#/getMyFriends">My Friends</a></li>
+					<li ng-class="{active: isActive('/InFriendRequests')}"><a href="#/InFriendRequests">My Friend Requests</a></li>
+					<li ng-class="{active: isActive('/SentRequests')}"><a href="#/SentRequests">Sent Requests</a></li>
+					<li ng-class="{active: isActive('/MyJobApplications')}"><a href="#/MyJobApplications">My Job Applications</a></li>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

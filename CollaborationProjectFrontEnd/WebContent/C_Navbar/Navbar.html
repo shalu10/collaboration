@@ -1,0 +1,36 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container-fluid">
+		<div ng-controller="navController">
+			<div ng-controller = "UserController as userctrl">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#/"><img ng-src="resources/images/logo.png" alt="Logo" style="max-height: 50px; margin-top: -15px;"/></a>
+				</div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav">
+						<li ng-class="{active: isActive('/')}"><a href="#/">Home</a></li>
+						<li ng-class="{active: isActive('/Blog') || isActive('/AddBlog')}" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#/Blog">Blogs<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#/Blog">View Blogs</a></li>
+								<li><a href="#/AddBlog">Add Blog</a></li>
+							</ul>
+						</li>
+						<li ng-class="{active: isActive('/Forum')}"><a href="#/Forum">Forum</a></li>
+						<li ng-class="{active: isActive('/Jobs')}"><a href="#/Jobs">Jobs</a></li>
+						<li ng-class="{active: isActive('/SearchUsers')}"><a href="#/SearchUsers">Friends</a></li>
+						<li ng-class="{active: isActive('/Chat')}"><a href="#/Chat">Chat</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+							<li ng-class="{active: isActive('/Register')}" ng-hide="loggedInUser.userId"><a href="#/Register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+							<li ng-class="{active: isActive('/Login')}" ng-hide="loggedInUser.userId"><a href="#/Login"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
+
+							<li ng-class="{active: isActive('/MyProfile')}" ng-show="loggedInUser.userId"><a href = "#/MyProfile"><img class="img-rounded img-responsive profile-img" check-image ng-src="{{'resources/ProfilePics/'+loggedInUser.userId}}"/> My Profile</a></li>
+							<li ng-class="{active: isActive('/Logout')}" ng-show="loggedInUser.userId"><a ng-click="userctrl.signOut()"  href="#/"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</nav>

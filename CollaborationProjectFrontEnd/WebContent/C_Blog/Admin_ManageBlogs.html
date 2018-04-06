@@ -1,0 +1,47 @@
+<div ng-controller="BlogController as blogctrl">
+	<div class="container">
+		<div class="h2">Manage Blogs</div>
+		<div class="row">
+			<div class="col-sm-offset-9 col-sm-3 nopadding">
+				<form>
+					<div class="form-group">
+						<label for="selectedSort">Sort by: </label>
+						<select ng-model='selectedSort' id="selectedSort" class="form-control bootstrap-select btn btn-navbar-color">
+							<option value='blogId'>Blog Id</option>
+							<option value='blogName'>Name</option>
+							<option value='userId'>User Id</option>
+							<option value='createDate'>Date</option>
+						</select>
+					</div>
+				</form>
+			</div>
+		</div>
+		
+		<div ng-repeat="blog in blogs | filter:{status : blogctrl.getManageAdminBlogStatus()} | orderBy : selectedSort">
+			<div class="well row vertical-align bordered">
+				<div class="col-sm-9">
+					<div>
+						<div class="h3">{{blog.blogName}}</div>
+						
+						<div class="col-xs-6">
+							<div class="text-muted">{{blog.userId}}</div>
+						</div>
+						<div class="col-xs-6">
+							<div class="text-right text-muted">{{blog.createDate | date:"medium" }}</div>
+						</div>
+					</div>
+					<hr />
+					<hr />
+					<div class="text-justify">{{blog.blogContent}}</div>
+					
+				</div>
+				<div class="col-sm-3 text-center">
+					<a class="btn btn-success" ng-click="blogctrl.approveBlog(blog.blogId)"> <span class="glyphicon glyphicon-ok"></span> </a>
+					<a class="btn btn-warning" ng-click="blogctrl.rejectBlog(blog.blogId)"> <span class="glyphicon glyphicon-remove"></span> </a>
+					<a ng-show="blogctrl.getManageAdminBlogStatus() == 'R'" class="btn btn-danger" ng-click="blogctrl.deleteBlog(blog.blogId)"> <span class="glyphicon glyphicon-trash"></span> </a>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,120 @@
+<div ng-controller="JobController as jobctrl">
+	<div class="container">
+		<div class="h2">Manage New Job Application</div>
+		
+		<div class="row">
+			<div class="col-sm-offset-9 col-sm-3 nopadding">
+				<form>
+					<div class="form-group">
+						<label for="selectedSort">Sort by: </label> 
+						<select ng-model='selectedJobApplicationsSort' id="selectedSort" class="form-control bootstrap-select btn btn-navbar-color">
+							<option value='jobId' selected>Job Id</option>
+							<option value='userId'>User Id</option>
+							<option value='jobAppliedId'>Job Application Id</option>
+							<option value='dateApplied'>Date Applied</option>
+						</select>
+					</div>
+				</form>
+			</div>
+		</div>
+		
+		<table class="table table-striped">
+			<tr>
+				<th>Job Id</th>
+				<th>User Id</th>
+				<th>Application Id</th>
+				<th>Date Applied</th>
+				<th>Action</th>
+			</tr>
+			<tr ng-repeat="jobApplication in Applications = (jobApplications | filter:{status : 'N'}) | orderBy : selectedJobApplicationsSort">
+				<td>{{jobApplication.jobId}}</td>
+				<td>{{jobApplication.userId}}</td>
+				<td>{{jobApplication.jobAppliedId}}</td>
+				<td>{{jobApplication.dateApplied | date:'medium'}}</td>
+				<td>
+					<a class="btn btn-warning" ng-click="jobctrl.callForInterviewJobApplication(jobApplication.userId, jobApplication.jobId)"> <span class="glyphicon glyphicon-info-sign"></span> </a>					
+					<a class="btn btn-danger" ng-click="jobctrl.rejectJobApplication(jobApplication.userId, jobApplication.jobId)"> <span class="glyphicon glyphicon-remove-circle"></span> </a>					
+					<a class="btn btn-success" ng-click="jobctrl.approveJobApplication(jobApplication.userId, jobApplication.jobId)"> <span class="glyphicon glyphicon-ok-circle"></span> </a>
+				</td>
+			</tr>			
+		</table>
+		<div ng-if="Applications.length == 0">No applications found</div>
+		
+		<hr />
+		
+		<div class="h2">Call for Interview</div>
+		
+		
+		<table class="table table-striped">
+			<tr>
+				<th>Job Id</th>
+				<th>User Id</th>
+				<th>Application Id</th>
+				<th>Date Applied</th>
+				<th>Action</th>
+			</tr>
+			<tr ng-repeat="jobApplication in Applications = (jobApplications | filter:{status : 'I'})| orderBy : selectedJobApplicationsSort">
+				<td>{{jobApplication.jobId}}</td>
+				<td>{{jobApplication.userId}}</td>
+				<td>{{jobApplication.jobAppliedId}}</td>
+				<td>{{jobApplication.dateApplied | date:'medium'}}</td>
+				<td>
+					<a class="btn btn-warning" ng-click="jobctrl.callForInterviewJobApplication(jobApplication.userId, jobApplication.jobId)"> <span class="glyphicon glyphicon-info-sign"></span> </a>					
+					<a class="btn btn-danger" ng-click="jobctrl.rejectJobApplication(jobApplication.userId, jobApplication.jobId)"> <span class="glyphicon glyphicon-remove-circle"></span> </a>					
+					<a class="btn btn-success" ng-click="jobctrl.approveJobApplication(jobApplication.userId, jobApplication.jobId)"> <span class="glyphicon glyphicon-ok-circle"></span> </a>
+				</td>
+			</tr>
+		</table>
+		<div ng-if="Applications.length == 0">No applications found</div>
+		<hr />
+		
+		<div class="h2">Approved job applications</div>
+		
+		<table class="table table-striped">
+			<tr>
+				<th>Job Id</th>
+				<th>User Id</th>
+				<th>Application Id</th>
+				<th>Date Applied</th>
+				<th>Action</th>
+			</tr>
+			<tr ng-repeat="jobApplication in Applications = (jobApplications | filter:{status : 'A'}) | orderBy : selectedJobApplicationsSort">
+				<td>{{jobApplication.jobId}}</td>
+				<td>{{jobApplication.userId}}</td>
+				<td>{{jobApplication.jobAppliedId}}</td>
+				<td>{{jobApplication.dateApplied | date:'medium'}}</td>
+				<td>
+					<a class="btn btn-warning" ng-click="jobctrl.callForInterviewJobApplication(jobApplication.userId, jobApplication.jobId)"> <span class="glyphicon glyphicon-info-sign"></span> </a>					
+					<a class="btn btn-danger" ng-click="jobctrl.rejectJobApplication(jobApplication.userId, jobApplication.jobId)"> <span class="glyphicon glyphicon-remove-circle"></span> </a>					
+					<a class="btn btn-success" ng-click="jobctrl.approveJobApplication(jobApplication.userId, jobApplication.jobId)"> <span class="glyphicon glyphicon-ok-circle"></span> </a>
+				</td>
+			</tr>
+		</table>
+		<div ng-if="Applications.length == 0">No applications found</div>
+		<hr />
+		
+		<div class="h2">Rejected job applications</div>
+		
+		<table class="table table-striped">
+			<tr>
+				<th>Job Id</th>
+				<th>User Id</th>
+				<th>Application Id</th>
+				<th>Date Applied</th>
+				<th>Action</th>
+			</tr>
+			<tr ng-repeat="jobApplication in Applications = (jobApplications | filter:{status : 'R'})| orderBy : selectedJobApplicationsSort">
+				<td>{{jobApplication.jobId}}</td>
+				<td>{{jobApplication.userId}}</td>
+				<td>{{jobApplication.jobAppliedId}}</td>
+				<td>{{jobApplication.dateApplied | date:'medium'}}</td>
+				<td>
+					<a class="btn btn-warning" ng-click="jobctrl.callForInterviewJobApplication(jobApplication.userId, jobApplication.jobId)"> <span class="glyphicon glyphicon-info-sign"></span> </a>					
+					<a class="btn btn-danger" ng-click="jobctrl.rejectJobApplication(jobApplication.userId, jobApplication.jobId)"> <span class="glyphicon glyphicon-remove-circle"></span> </a>					
+					<a class="btn btn-success" ng-click="jobctrl.approveJobApplication(jobApplication.userId, jobApplication.jobId)"> <span class="glyphicon glyphicon-ok-circle"></span> </a>
+				</td>
+			</tr>
+		</table>
+		<div ng-if="Applications.length == 0">No applications found</div>
+	</div>
+</div>

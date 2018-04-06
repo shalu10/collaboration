@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Collaboration Project</title>
+<!-- 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>
+ -->
+
+<link rel="stylesheet" href="resources/css/bootstrap.css">
+<link rel="stylesheet" href="resources/css/MyStyle.css">
+<link rel="stylesheet" href="resources/css/font-awesome.css">
+
+<script src="resources/js/jquery-3.2.0.js"></script>
+<script src="resources/js/bootstrap.js"></script>
+<script src="resources/js/angular.js"></script>
+<script src="resources/js/angular-route.js"></script>
+<script src="resources/js/angular-cookies.js"></script>
+<script src="resources/js/MyScript.js"></script>
+<script src="resources/js/sockjs.js"></script>
+<script src="resources/js/stomp.js"></script>
+
+<!-- MainApp -->
+<script src="MainApp.js"></script>
+
+<!-- Route Config -->
+<script src="RouteConfig.js"></script>
+
+
+</head>
+<body ng-app="myapp">
+	
+	<div ng-include="'C_Navbar/Navbar.html'" ></div>
+	<marquee class="text-danger">{{errorMessage}}</marquee>
+	<marquee class="text-navbar-color">{{successMessage}}</marquee>
+	
+	<div ng-show="loggedInUser.role=='ROLE_ADMIN'" ng-include="'C_Navbar/AdminMenu.html'"></div>
+	
+	<div class="container">
+		<div ng-view></div>
+	</div>
+
+	<div ng-include="'Template/Footer.html'" ></div>
+
+
+<!-- Blog -->
+<script src="C_Blog/BlogController.js"></script>
+<script src="C_Blog/BlogService.js"></script>
+
+<!-- Forum -->
+<script src="C_Forum/ForumController.js"></script>
+<script src="C_Forum/ForumService.js"></script>
+
+<!-- Jobs -->
+<script src="C_Jobs/JobController.js"></script>
+<script src="C_Jobs/JobService.js"></script>
+
+<!-- User -->
+<script src="C_User/UserController.js"></script>
+<script src="C_User/UserService.js"></script>
+
+<!-- Friend -->
+<script src="C_Friend/FriendController.js"></script>
+<script src="C_Friend/FriendService.js"></script>
+
+<!-- Chat -->
+<script src="C_Chat/ChatController.js"></script>
+<script src="C_Chat/ChatService.js"></script>
+
+<!-- Navbar -->
+<script src="C_Navbar/navController.js"></script>
+
+</body>
+</html>

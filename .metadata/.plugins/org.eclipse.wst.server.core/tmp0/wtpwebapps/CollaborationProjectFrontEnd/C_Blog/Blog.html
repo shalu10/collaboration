@@ -1,0 +1,98 @@
+<div ng-controller="BlogController as blogctrl">
+	<div class="container">
+		<div class="h2">Blogs</div>
+		<br /><br />
+		<div class="row">
+			<div class="col-sm-9">
+				<div id="custom-search-input">
+					<div class="input-group col-md-12">
+						<input type="text" class="form-control input-lg" placeholder="Search Blogs" ng-model="filterText" /> <span class="input-group-btn">
+							<button class="btn btn-info btn-lg" type="button">
+								<i class="glyphicon glyphicon-search"></i>
+							</button>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3 nopadding">
+				<form>
+					<div class="form-group">
+						<label for="selectedSort">Sort by: </label>
+						<select ng-model='selectedSort' id="selectedSort" class="form-control bootstrap-select btn btn-navbar-color">
+							<option value='blogId'>Blog Id</option>
+							<option value='blogName'>Name</option>
+							<option value='userId'>User Id</option>
+							<option value='createDate'>Date</option>
+						</select>
+					</div>
+				</form>
+			</div>
+		</div>
+		<br /><br />
+		
+
+		<div ng-repeat="thisBlog in blogs | filter:filterText | orderBy : selectedSort">
+			<div  ng-if="thisBlog.status == 'A'">
+				<div class="well row vertical-align bordered">
+					<div class="col-sm-12">
+						<div>
+							<div class="h3">{{thisBlog.blogName}}</div>
+	
+							<div class="col-md-6">
+								<div class="text-muted">Posted by: {{thisBlog.userId}}</div>
+							</div>
+							<div class="col-md-6">
+								<div class="text-right text-muted">Posted on: {{thisBlog.createDate | date:"medium" }}</div>
+							</div>
+						</div>
+						<hr />
+						<hr />
+						<div class="text-justify">{{thisBlog.blogContent}}</div>
+						<div ng-if="thisBlog.userId == loggedInUser.userId"><a class="btn btn-navbar-color col-sm-offset-10 col-sm-1" ng-click="blogctrl.editBlog(thisBlog)"><span class="glyphicon glyphicon-edit"></span></a></div>
+						<div ng-if="thisBlog.userId == loggedInUser.userId"><a class="btn btn-danger col-sm-1" ng-click="blogctrl.deleteBlog(thisBlog.blogId)"><span class="glyphicon glyphicon-remove"></span></a></div>
+	
+					</div>
+				</div>
+				<div ng-if="thisBlog.blogId == blog.blogId">
+					<div ng-include="'C_Blog/EditBlog.html'"></div>
+				</div>
+				<a ng-click="toggleFilter(thisBlog.blogId)" class="btn btn-navbar-color">Comments</a>
+				<a class="btn btn-navbar-color" ng-click = "blogctrl.userClickedAddBlogComment(thisBlog.blogId)">Add comment</a>
+				<br />
+				<br />
+	
+				<div ng-if="blogId == thisBlog.blogId ">
+					<div ng-repeat="blogComment in blogComments | filter:{blogId : thisBlog.blogId}">
+						<div class="col-sm-12 container well">
+							<div class="col-sm-6 text-muted">{{blogComment.username}}</div>
+							<div class="com-sm-6 text-muted text-right">{{blogComment.commentDate | date:'medium'}}</div>
+							<hr class="muted" />
+							<div class="col-sm-12"><pre>{{blogComment.blogComment}}</pre></div>
+						</div>
+					</div>
+				</div>
+				<div ng-if="blogId1 == thisBlog.blogId">
+					<h2>Add comment</h2>
+					<div class="container">
+						<div class="well">
+							<form name="myForm" ng-submit="blogctrl.saveBlogComment(blogComment, thisBlog.blogId)">
+								<div class="form-group">
+									<label for="bComment">Comment:</label> 
+									<textarea type="text" placeholder="Enter Comment" class="form-control" name="bComment" id="bComment" ng-model="blogComment.blogComment" ng-minlength="5" ng-maxlength="255" required></textarea> 
+									<span ng-show="myForm.bComment.$error.minlength" style="color: red;">Minimum 5 characters</span> 
+									<span ng-show="myForm.bComment.$error.maxlength" style="color: red;">Maximum 255 characters</span> 
+									<span ng-show="myForm.bComment.$error.required && myForm.bComment.$dirty" style="color: red;">Required Field</span>
+								</div>
+								<button type="submit" class="btn btn-success" ng-disabled="myForm.$invalid">Add Comment</button>
+							</form>
+						</div>
+					</div>
+				</div>
+				
+				<br /> <br />
+			</div>
+		</div>
+
+	</div>
+	</div>
+</div>

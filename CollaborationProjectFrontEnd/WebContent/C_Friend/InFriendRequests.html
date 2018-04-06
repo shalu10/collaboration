@@ -1,0 +1,20 @@
+<div ng-controller="FriendController as friendctrl">
+<div ng-include="'C_Navbar/CommonNavBar.html'"></div>
+	<div class="container">
+		<table class="table table-striped">
+			<tr>
+				<th></th>
+				<th>FriendId</th>
+				<th>Action</th>
+			</tr>
+			<tr ng-repeat="thisfriend in getMyFriendRequests" ng-if="thisfriend.errorCode != '404'")>
+					<td><img class="img-rounded img-responsive profile-img" check-image ng-src="{{'resources/ProfilePics/'+thisfriend}}"/></td>
+					<td>{{thisfriend}}</td>
+					<td>
+						<a class="btn btn-success" ng-click="friendctrl.acceptFriend(thisfriend)"><span class="glyphicon glyphicon-ok"></span></a>
+						<a class="btn btn-danger" ng-click="friendctrl.rejectFriend(thisfriend)"><span class="glyphicon glyphicon-remove"></span></a>
+					</td>
+			</tr>
+		</table>
+	</div>
+</div>

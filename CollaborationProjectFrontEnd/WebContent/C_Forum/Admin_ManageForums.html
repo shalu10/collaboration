@@ -1,0 +1,49 @@
+<div ng-controller="ForumController as forumctrl">
+	<div class="container">
+		<div class="h2">Manage Forums</div>
+		<div class="row">
+			<div class="col-sm-offset-9 col-sm-3 nopadding">
+				<form>
+					<div class="form-group">
+						<label for="selectedSort">Sort by: </label>
+						<select ng-model='selectedSort' id="selectedSort" class="form-control bootstrap-select btn btn-navbar-color">
+							<option value='forumId'>Forum Id</option>
+							<option value='forumName'>Name</option>
+							<option value='userId'>User Id</option>
+							<option value='createDate'>Date</option>
+						</select>
+					</div>
+				</form>
+			</div>
+		</div>
+		
+		<div ng-repeat="oneforum in forums | filter:'A' | orderBy : selectedSort">
+			<div class="well row vertical-align bordered">
+				<div class="col-sm-9">
+					<div>
+						<div class="h3">{{oneforum.forumName}}</div>
+						
+						<div class="col-xs-6">
+							<div class="text-muted">{{oneforum.userId}}</div>
+						</div>
+						<div class="col-xs-6">
+							<div class="text-right text-muted">{{oneforum.createDate | date:"medium" }}</div>
+						</div>
+					</div>
+					<hr />
+					<hr />
+					<div class="text-justify">{{oneforum.forumContent}}</div>
+					
+				</div>
+				<div class="col-sm-3 text-center">
+					<a class="btn btn-success" ng-click="forumctrl.editForum(oneforum)"> <span class="glyphicon glyphicon-edit"></span> </a>
+					<a class="btn btn-danger" ng-click="forumctrl.deleteForum(oneforum.forumId)"> <span class="glyphicon glyphicon-remove"></span> </a>
+				</div>
+			</div>
+			<div ng-if="forum.forumId == oneforum.forumId">
+				<div ng-include="'C_Forum/Admin_EditForum.html'"></div>
+			</div>
+			
+		</div>
+	</div>
+</div>

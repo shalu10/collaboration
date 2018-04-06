@@ -1,0 +1,27 @@
+<div class="container">
+	<div class="well">
+		<div class="h2 text-center">Update Blog</div>
+		<br />
+		<form name="myForm" ng-submit="updateBlog(blog, myForm)">
+			<div class="form-group">
+				<label for="bName">Name:</label> 
+				<input type="text" placeholder="Enter Blog Name" class="form-control" name="bName" id="bName" ng-model="blog.blogName" ng-minlength="5" ng-maxlength="255" required> 
+				<span ng-show="myForm.bName.$error.minlength" style="color: red;">Minimum 5 characters</span> 
+				<span ng-show="myForm.bName.$error.maxlength" style="color: red;">Maximum 255 characters</span> 
+				<span ng-show="myForm.bName.$error.required && myForm.bName.$dirty" style="color: red;">Required Field</span>
+			</div>
+					
+			<div class="form-group">
+				<label for="bContent">Description:</label> 
+				<textarea type="text" placeholder="Enter Blog Content" class="form-control" name="bContent" id="bContent" ng-model="blog.blogContent" ng-minlength="5" ng-maxlength="5000" required></textarea> 
+				<span ng-show="myForm.bContent.$error.minlength" style="color: red;">Minimum 5 characters</span> 
+				<span ng-show="myForm.bContent.$error.maxlength" style="color: red;">Maximum 5000 characters</span> 
+				<span ng-show="myForm.bContent.$error.required && myForm.bContent.$dirty" style="color: red;">Required Field</span>
+			</div>
+					
+			<button type="submit" class="btn btn-success" ng-disabled="myForm.$invalid">Update Blog</button>
+				
+		</form>
+
+	</div>
+</div>

@@ -1,0 +1,33 @@
+<div ng-controller="FriendController as friendctrl">
+	
+			<div class="col-sm-3">
+				<img class="img-responsive" check-image ng-src="{{'resources/ProfilePics/'+user.userId}}" alt="Profile Pic" />
+				<br />
+				
+			</div>
+			<div class="col-sm-9">
+				<table class="table table-striped">
+					<tr>
+						<td><b>First Name</b></td>
+						<td>: {{user.firstname}}</td>
+					</tr>
+					<tr>
+						<td><b>Last Name</b></td>
+						<td>: {{user.lastname}}</td>
+					</tr>
+					<tr>
+						<td><b>User Id</b></td>
+						<td>: {{user.userId}}</td>
+					</tr>
+					<tr>
+						<td><b>Email</b></td>
+						<td>: {{user.email}}</td>
+					</tr>
+					
+				</table>
+			</div>
+			<div class="col-sm-2">
+				<a class="btn btn-success" ng-click="friendctrl.addFriend(user.userId)">Add Friend</a>
+			</div>
+			
+</div>

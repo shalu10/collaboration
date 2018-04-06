@@ -1,0 +1,38 @@
+<div ng-controller="navController">
+	<div ng-controller="UserController as userctrl">
+		<div class="container">
+			<div class="navbar navbar-default">
+					<ul class="nav navbar-nav nav-tabs nav-justified">
+					<li ng-class="{active: isActive('/ManageNewBlogs') || isActive('/ManageUpdatedBlogs') || isActive('/ManageRejectedBlogs')}" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#/ManageNewBlogs">Manage Blogs<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#/ManageNewBlogs">Manage new blogs</a></li>
+							<li><a href="#/ManageUpdatedBlogs">Manage updated blogs</a></li>
+							<li><a href="#/ManageRejectedBlogs">Manage rejected blogs</a></li>
+						</ul>
+					</li>
+					<li ng-class="{active: isActive('/ManageForums') || isActive('/CreateNewForum')}" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#/ManageForums">Manage Forums<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#/ManageForums">Manage forums</a></li>
+							<li><a href="#/CreateNewForum">Create new forum</a></li>
+						</ul>
+					</li>
+					<li ng-class="{active: isActive('/CreateNewJob') || isActive('/ManageOpenJobs') || isActive('/ManageClosedJobs') || isActive('/ManageJobApplications')}" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Jobs<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#/CreateNewJob">Create new job</a></li>
+							<li><a href="#/ManageOpenJobs">Manage open jobs</a></li>
+							<li><a href="#/ManageClosedJobs">Manage closed jobs</a></li>
+							<li><a href="#/ManageJobApplications">Manage job applications</a></li>
+						</ul>
+					</li>
+					<li ng-class="{active: isActive('/ManageNewUsers') || isActive('/ManageExistingUsers') || isActive('/ManageRejectedUsers') || isActive('/CreateNewUsers')}" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Users<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#/ManageNewUsers">Manage new users</a></li>
+							<li><a href="#/ManageExistingUsers">Manage existing users</a></li>
+							<li><a href="#/ManageRejectedUsers">View rejected users</a></li>
+							<li><a href="#/CreateNewUsers">Create new users</a></li>
+						</ul>
+					</li>
+				</div>
+		</div>
+	</div>
+</div>

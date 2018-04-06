@@ -1,0 +1,69 @@
+<div ng-controller="JobController as jobctrl">
+	<div class="container">
+		<div class="h2">Apply Jobs</div>
+		<br /><br />
+		<div class="row">
+			<div class="col-sm-9">
+				<div id="custom-search-input">
+					<div class="input-group col-md-12">
+						<input type="text" class="form-control input-lg" placeholder="Search Jobs" ng-model="filterText" /> <span class="input-group-btn">
+							<button class="btn btn-info btn-lg" type="button">
+								<i class="glyphicon glyphicon-search"></i>
+							</button>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3 nopadding">
+				<form>
+					<div class="form-group">
+						<label for="selectedSort">Sort by: </label> 
+						<select ng-model='selectedSort' id="selectedSort" class="form-control bootstrap-select btn btn-navbar-color">
+							<option value='jobId' selected>Job Id</option>
+							<option value='jobTitle'>Job Title</option>
+							<option value='createDate'>Date</option>
+						</select>
+					</div>
+				</form>
+			</div>
+		</div>
+		<br /><br />
+		<div ng-repeat="thisJob in jobs | filter:filterText | orderBy : selectedSort">
+			<div ng-if="thisJob.jobStatus == 'O'">
+				<div class="container well row vertical-align bordered">
+					<div class="col-md-11 col-sm-12">
+						<div>
+							<div class="h3">{{thisJob.jobTitle}}</div>
+							
+							<div class="col-md-4 col-sm-12">
+								<div class="text-muted">{{thisJob.jobId}}</div>
+							</div>
+							<div class="col-md-4 col-sm-12 text-center">
+								<div class="text-muted">Status : {{thisJob.jobStatus}}</div>
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<div class="text-right text-muted">{{thisJob.createDate | date:"medium" }}</div>
+							</div>
+						</div>
+						<hr class="text-muted"/>
+						<hr />
+						<div class="text-justify text-muted"> Qualification : {{thisJob.jobQualification}}</div>
+						<div class="text-justify">{{thisJob.jobDescription}}</div>
+						
+						
+						
+					</div>
+					<div class="col-md-1 text-center col-sm-12">
+						<a class="btn btn-success" ng-click="jobctrl.applyJob(thisJob.jobId)"> <span class="glyphicon glyphicon-ok-sign"></span> </a>					
+					</div>
+				</div>
+				
+				<div class="container" ng-if="thisJob.jobId == job.jobId">{{jobctrl.job.jobId}}
+					<div ng-include="'C_Jobs/Admin_EditJob.html'"></div>
+				</div>
+			</div>
+				
+		</div>
+	</div>
+	
+</div>

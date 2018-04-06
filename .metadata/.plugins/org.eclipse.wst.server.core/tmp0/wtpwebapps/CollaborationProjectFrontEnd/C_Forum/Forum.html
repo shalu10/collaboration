@@ -1,0 +1,57 @@
+<div ng-controller="ForumController as forumctrl">
+	<div class="container">
+		<div class="h2">Forums</div> 
+		<hr />
+		<br /><br />
+		<div class="row">
+			<div class="col-sm-9">
+				<div id="custom-search-input">
+					<div class="input-group col-md-12">
+						<input type="text" class="form-control input-lg" placeholder="Search Forum Topics" ng-model="filterText" /> <span class="input-group-btn">
+							<button class="btn btn-info btn-lg" type="button">
+								<i class="glyphicon glyphicon-search"></i>
+							</button>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3 nopadding">
+				<form>
+					<div class="form-group">
+						<label for="selectedSort">Sort by: </label>
+						<select ng-model='selectedSort' id="selectedSort" class="form-control bootstrap-select btn btn-navbar-color">
+							<option value='forumId'>Forum Id</option>
+							<option value='forumName'>Name</option>
+							<option value='userId'>User Id</option>
+							<option value='createDate'>Date</option>
+						</select>
+					</div>
+				</form>
+			</div>
+		</div>
+		<br /><br />
+		<div ng-repeat="oneforum in forums | filter:filterText | orderBy : selectedSort">
+			<div  ng-if="oneforum.status == 'A'">
+				<div class="well row bordered" ng-click="forumctrl.viewForum(oneforum)">
+					<div class="col-sm-12">
+						<div>
+							<div class="h3">{{oneforum.forumName}}</div>
+	
+							<div class="col-xs-6">
+								<div class="text-muted">{{oneforum.userId}}</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="text-right text-muted">{{oneforum.createDate | date:"medium" }}</div>
+							</div>
+						</div>
+						<hr />
+						<hr />
+						<div class="text-justify">{{oneforum.forumContent}}</div>
+	
+					</div>
+				</div>
+			</div>
+				
+		</div>
+	</div>
+</div>

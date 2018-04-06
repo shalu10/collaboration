@@ -1,0 +1,42 @@
+<div ng-controller="UserController as userctrl">
+	<div class="container">
+		<div class="h2">Manage Users</div>
+		<div class="row">
+			<div class="col-sm-offset-9 col-sm-3 nopadding">
+				<form>
+					<div class="form-group">
+						<label for="selectedSort">Sort by: </label>
+						<select ng-model='selectedSort' id="selectedSort" class="form-control bootstrap-select btn btn-navbar-color">
+							<option value='userId'>User Id</option>
+							<option value='firstname'>First Name</option>
+							<option value='lastname'>Last Name</option>
+							<option value='email'>Email</option>
+							<option value='role'>Role</option>
+						</select>
+					</div>
+				</form>
+			</div>
+		</div>
+		
+		<div ng-repeat="thisUser in users | filter:{status : userctrl.getManageUserStatus()} | orderBy : selectedSort">
+			
+			<div class="well row vertical-align bordered">
+				<div class="col-sm-10">				
+						<div class="col-sm-7"><div class="col-sm-3">Id</div><div class="col-sm-9">: {{thisUser.userId}}</div></div>
+						<div class="col-sm-5"><div class="col-sm-3">Role</div><div class="col-sm-9">: {{thisUser.role}}</div></div>
+						<div class="col-sm-7"><div class="col-sm-3">Firstname</div><div class="col-sm-9">: {{thisUser.firstname}}</div></div>
+						<div class="col-sm-5"><div class="col-sm-3">Lastname</div><div class="col-sm-9">: {{thisUser.lastname}}</div></div>
+						<div class="col-sm-7"><div class="col-sm-3">Email</div><div class="col-sm-9">: {{thisUser.email}}</div></div>
+				</div>
+				<div class="col-sm-2 text-center">
+					<a ng-if="userctrl.getManageUserStatus() == 'N' || userctrl.getManageUserStatus() == 'R'" class="btn btn-success" ng-click="userctrl.approveUser(thisUser.userId)"> <span class="glyphicon glyphicon-ok"></span> </a>
+					<a ng-if="userctrl.getManageUserStatus() == 'N' || userctrl.getManageUserStatus() == 'A'" class="btn btn-warning" ng-click="userctrl.rejectUser(thisUser.userId)"> <span class="glyphicon glyphicon-remove"></span> </a>
+					<a class="btn btn-primary" ng-click="userctrl.editUser(thisUser)"> <span class="glyphicon glyphicon-edit"></span> </a>
+				</div>
+			</div>
+			<div ng-if="thisUser.userId == user.userId">
+				<div ng-include="'C_User/Admin_EditUser.html'"></div>
+			</div>
+		</div>
+	</div>
+</div>
